@@ -59,7 +59,7 @@ ROOT_URLCONF = 'interview.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR+'/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -133,3 +133,21 @@ MEDIA_ROOT = '/home/muthuinterview/interview/media'
 MEDIA_URL = '/media/'
 STATIC_ROOT = '/home/muthuinterview/interview/static'
 STATIC_URL = '/static/'
+
+#Paginations
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated'
+    ],
+
+}
+
+#AuthBackEnd
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend', 'registration.mobile_backend.MobileBackend']

@@ -26,6 +26,6 @@ class EmployeeList(generics.ListCreateAPIView):
 
     def list(self, request, pk):
         # Note the use of `get_queryset()` instead of `self.queryset`
-        queryset = self.get_queryset().order_by('created_at')[(pk*20)-19:(pk*20)+1]
+        queryset = self.get_queryset().order_by('id')[(pk*20)-20:pk*20]
         serializer = EmployeeSerializer(queryset, many=True)
         return Response(serializer.data)

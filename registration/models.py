@@ -16,7 +16,6 @@ class UserManager(BaseUserManager):
     use_in_migrations = True
 
     def _create_user(self, mobile_number, password, **extra_fields):
-        extra_fields['username'] = mobile_number
         """Create and save a User with the given email and password."""
         if not mobile_number:
             raise ValueError('The given mobile Number must be set')
@@ -47,8 +46,7 @@ class UserManager(BaseUserManager):
 class User(AbstractUser):
     mobile_number = models.IntegerField(unique=True)
 
-    USERNAME_FIELD = 'mobile_number'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['mobile_number']
 
 
     objects = UserManager()
